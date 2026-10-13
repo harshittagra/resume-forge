@@ -631,62 +631,142 @@ st.markdown("""
     header { visibility: hidden; }
 
     /* ── Button styling ───────────────────────────────── */
-    .stButton > button[kind="primary"] {
-        background: linear-gradient(135deg, #6366f1, #7c3aed) !important;
-        border: none !important;
-        color: white !important;
+    .stButton > button, .stDownloadButton > button {
+        border-radius: 12px !important;
+        font-family: 'Inter', sans-serif !important;
         font-weight: 600 !important;
-        border-radius: 10px !important;
-        transition: all 0.3s ease !important;
+        padding: 0.6rem 1.2rem !important;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        letter-spacing: -0.01em !important;
     }
-    .stButton > button[kind="primary"]:hover {
-        transform: translateY(-1px) !important;
-        box-shadow: 0 4px 16px rgba(99,102,241,0.3) !important;
+    .stButton > button[kind="primary"], .stDownloadButton > button[kind="primary"] {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%) !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 18px rgba(99,102,241,0.35) !important;
+    }
+    .stButton > button[kind="primary"]:hover, .stDownloadButton > button[kind="primary"]:hover {
+        transform: translateY(-2px) scale(1.01) !important;
+        box-shadow: 0 8px 24px rgba(139,92,246,0.5) !important;
+        border-color: rgba(255,255,255,0.3) !important;
+    }
+    .stButton > button[kind="secondary"], .stDownloadButton > button[kind="secondary"],
+    .stButton > button:not([kind="primary"]), .stDownloadButton > button:not([kind="primary"]) {
+        background: rgba(17, 14, 38, 0.75) !important;
+        border: 1px solid rgba(139,92,246,0.25) !important;
+        color: #c4b5fd !important;
+        backdrop-filter: blur(10px) !important;
+    }
+    .stButton > button:not([kind="primary"]):hover, .stDownloadButton > button:not([kind="primary"]):hover {
+        background: rgba(99,102,241,0.18) !important;
+        border-color: rgba(139,92,246,0.5) !important;
+        color: #ffffff !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 18px rgba(99,102,241,0.2) !important;
     }
 
     /* ── Text area & inputs ───────────────────────────── */
     .stTextArea textarea, .stTextInput input {
-        background: rgba(15,15,35,0.6) !important;
-        border: 1px solid rgba(99,102,241,0.15) !important;
-        border-radius: 10px !important;
+        background: rgba(12, 10, 28, 0.75) !important;
+        border: 1px solid rgba(139,92,246,0.2) !important;
+        border-radius: 12px !important;
         color: #e2e8f0 !important;
+        font-family: 'Inter', sans-serif !important;
+        font-size: 0.9rem !important;
+        backdrop-filter: blur(10px) !important;
+        transition: all 0.2s ease !important;
     }
     .stTextArea textarea:focus, .stTextInput input:focus {
-        border-color: rgba(99,102,241,0.4) !important;
-        box-shadow: 0 0 0 2px rgba(99,102,241,0.1) !important;
+        border-color: rgba(139,92,246,0.6) !important;
+        box-shadow: 0 0 0 3px rgba(99,102,241,0.2) !important;
+        background: rgba(15, 12, 35, 0.9) !important;
     }
 
     /* ── File uploader ────────────────────────────────── */
     .stFileUploader {
-        background: rgba(15,15,35,0.4) !important;
-        border: 1px dashed rgba(99,102,241,0.2) !important;
-        border-radius: 14px !important;
+        background: rgba(13, 11, 30, 0.6) !important;
+        border: 1px dashed rgba(139,92,246,0.3) !important;
+        border-radius: 16px !important;
+        backdrop-filter: blur(12px) !important;
+        padding: 0.8rem !important;
+        transition: all 0.2s ease !important;
+    }
+    .stFileUploader:hover {
+        border-color: rgba(139,92,246,0.6) !important;
+        background: rgba(17, 14, 38, 0.75) !important;
     }
 
     /* ── Expander ──────────────────────────────────────── */
     .streamlit-expanderHeader {
-        background: rgba(15,15,35,0.5) !important;
-        border-radius: 10px !important;
-        border: 1px solid rgba(99,102,241,0.1) !important;
+        background: rgba(15,12,35,0.7) !important;
+        border-radius: 12px !important;
+        border: 1px solid rgba(139,92,246,0.15) !important;
+        backdrop-filter: blur(10px) !important;
     }
 
     /* ── Tabs ──────────────────────────────────────────── */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 4px;
+        gap: 6px;
+        border-bottom: 1px solid rgba(139,92,246,0.15);
     }
     .stTabs [data-baseweb="tab"] {
-        background: rgba(15,15,35,0.5) !important;
-        border-radius: 10px 10px 0 0 !important;
-        border: 1px solid rgba(99,102,241,0.1) !important;
+        background: rgba(15,12,35,0.6) !important;
+        border-radius: 12px 12px 0 0 !important;
+        border: 1px solid rgba(139,92,246,0.15) !important;
         border-bottom: none !important;
         color: #94a3b8 !important;
         font-weight: 500 !important;
+        padding: 0.5rem 1rem !important;
+        transition: all 0.2s ease !important;
     }
     .stTabs [aria-selected="true"] {
-        background: rgba(99,102,241,0.12) !important;
-        border-color: rgba(99,102,241,0.2) !important;
-        color: #c4b5fd !important;
-        font-weight: 600 !important;
+        background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.15)) !important;
+        border-color: rgba(139,92,246,0.4) !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+    }
+
+    /* ── Custom Dark Scrollbar ────────────────────────── */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #070614;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(139,92,246,0.25);
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(139,92,246,0.5);
+    }
+
+    /* ── Mobile responsiveness ────────────────────────── */
+    @media (max-width: 768px) {
+        .hero-banner {
+            padding: 1.4rem 1.2rem !important;
+        }
+        .hero-banner h1 {
+            font-size: 1.6rem !important;
+        }
+        .hero-sub {
+            font-size: 0.82rem !important;
+        }
+        .score-gauge {
+            width: 120px !important;
+            height: 120px !important;
+        }
+        .score-gauge-value {
+            font-size: 2.2rem !important;
+        }
+        .stat-row {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.5rem !important;
+        }
+        .glass-card {
+            padding: 1rem !important;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
