@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ resume.contact.name }} — Resume</title>
+    <style>{{ css }}</style>
+</head>
+<body>
+    <!-- CONTACT HEADER -->
+    <header class="contact-header">
+        <h1>{{ resume.contact.name }}</h1>
+        <div class="contact-line">
+            {% if resume.contact.email %}{{ resume.contact.email }}{% endif %}
+            {% if resume.contact.phone %} · {{ resume.contact.phone }}{% endif %}
+            {% if resume.contact.location %} · {{ resume.contact.location }}{% endif %}
+        </div>
+        <div class="contact-line">
+            {% if resume.contact.linkedin %}{{ resume.contact.linkedin }}{% endif %}
+            {% if resume.contact.website %} · {{ resume.contact.website }}{% endif %}
+        </div>
+    </header>
+
+    <!-- PROFESSIONAL SUMMARY -->
+    {% if resume.summary %}
+    <section>
+        <h2>PROFESSIONAL SUMMARY</h2>
+        <p class="summary-text">{{ resume.summary }}</p>
+    </section>
+    {% endif %}
+
+    <!-- EXPERIENCE -->
+    {% if resume.experience %}
+    <section>
+        <h2>PROFESSIONAL EXPERIENCE</h2>
+        {% for exp in resume.experience %}
+        <div class="experience-entry">
+            <div class="exp-header">
+                <div class="exp-title-company">
+                    <strong>{{ exp.title }}</strong>
+                    {% if exp.company %} — {{ exp.company }}{% endif %}
+                </div>
+                <div class="exp-meta">
+                    {% if exp.dates %}{{ exp.dates }}{% endif %}
+                    {% if exp.location %} · {{ exp.location }}{% endif %}
+                </div>
+            </div>
+            <ul>
+                {% for bullet in exp.bullets %}
+                <li>{{ bullet }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- SKILLS -->
+    {% if resume.skills %}
+    <section>
+        <h2>CORE COMPETENCIES</h2>
+        <div class="skills-grid">
+            {% if resume.skills.technical %}
+            <div class="skill-category">
+                <strong>Technical:</strong> {{ resume.skills.technical | join(', ') }}
+            </div>
+            {% endif %}
+            {% if resume.skills.tools %}
+            <div class="skill-category">
+                <strong>Tools:</strong> {{ resume.skills.tools | join(', ') }}
+            </div>
+            {% endif %}
+            {% if resume.skills.soft %}
+            <div class="skill-category">
+                <strong>Soft Skills:</strong> {{ resume.skills.soft | join(', ') }}
+            </div>
+            {% endif %}
+            {% if resume.skills.certifications %}
+            <div class="skill-category">
+                <strong>Certifications:</strong> {{ resume.skills.certifications | join(', ') }}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- PROJECTS -->
+    {% if resume.projects %}
+    <section>
+        <h2>PROJECTS</h2>
+        {% for proj in resume.projects %}
+        <div class="project-entry">
+            <strong>{{ proj.name }}</strong>
+            {% if proj.technologies %} <span class="tech-list">({{ proj.technologies | join(', ') }})</span>{% endif %}
+            {% if proj.link %} — <a href="{{ proj.link }}">{{ proj.link }}</a>{% endif %}
+            {% if proj.description %}<p>{{ proj.description }}</p>{% endif %}
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- EDUCATION -->
+    {% if resume.education %}
+    <section>
+        <h2>EDUCATION</h2>
+        {% for edu in resume.education %}
+        <div class="education-entry">
+            <div class="edu-header">
+                <strong>{{ edu.degree }}</strong>
+                {% if edu.institution %} — {{ edu.institution }}{% endif %}
+                {% if edu.year %}<span class="edu-year">{{ edu.year }}</span>{% endif %}
+            </div>
+            {% if edu.gpa %}<div class="edu-detail">GPA: {{ edu.gpa }}</div>{% endif %}
+            {% if edu.details %}<div class="edu-detail">{{ edu.details }}</div>{% endif %}
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+</body>
+</html>

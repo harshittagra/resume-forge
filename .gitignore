@@ -1,0 +1,11 @@
+.env
+venv/
+.venv/
+__pycache__/
+*.pyc
+data/master_resume.json
+data/history.json
+.DS_Store
+*.swp
+.vscode/
+.idea/
