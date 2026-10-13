@@ -20,6 +20,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Synchronize cloud secrets (Streamlit Cloud / HF) to os.environ
+try:
+    if hasattr(st, "secrets"):
+        for _k in ["GROQ_API_KEY", "GOOGLE_API_KEY"]:
+            if _k in st.secrets and _k not in os.environ:
+                os.environ[_k] = str(st.secrets[_k])
+except Exception:
+    pass
+
 from parsers.resume_parser import (
     extract_text, structure_resume_with_llm, save_master_resume,
     load_master_resume, master_resume_exists, get_empty_resume,
